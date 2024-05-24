@@ -21,10 +21,10 @@
     {
       "identity" : "postgresclientkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/codewinsdotcom/PostgresClientKit.git",
+      "location" : "https://github.com/codewinsdotcom/PostgresClientKit",
       "state" : {
-        "branch" : "master",
-        "revision" : "c2768c8ebe708b1c5937431972c7882b33f4ea49"
+        "revision" : "356ffe0c43722f192d796300557b3b530a0baebc",
+        "version" : "1.5.0"
       }
     }
   ],
