@@ -8,22 +8,23 @@
 import PostgresClientKit
 import UIKit
 
-class TableViewController: UIViewController {
+final class TableViewController: UIViewController {
     
+    private let keys = PG_Keys()
     private let pickerView = UIPickerView()
     private let tableView = UITableView()
-    private let host = "localhost"
-    private let port = 5432
-    private let username = "postgres"
-    private let password = "14265"
-    private let databaseName = "home_library"
-    private var tables: [String] = [] // Список таблиц
+    private var tables: [String] = []
     private var selectedTableName: String?
-    private var tableData: [[String]] = [] // Содержимое выбранной таблицы
-    private var columnNames: [String] = [] // Названия столбцов выбранной таблицы
+    private var tableData: [[String]] = []
+    private var columnNames: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViews()
+        fetchTables()
+    }
+    
+    private func configureViews() {
         view.backgroundColor = .systemBackground
         
         pickerView.delegate = self
@@ -32,6 +33,7 @@ class TableViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorInset = .init(top: 0, left: 5, bottom: 0, right: 5)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
         
@@ -45,12 +47,10 @@ class TableViewController: UIViewController {
             pickerView.heightAnchor.constraint(equalToConstant: 150),
             
             tableView.topAnchor.constraint(equalTo: pickerView.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        
-        fetchTables()
     }
 }
 // MARK: - UIPickerViewDelegate & UIPickerViewDataSource
@@ -76,7 +76,6 @@ extension TableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 // MARK: - UITableViewDataSource
 extension TableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Добавляем единицу для строки с названиями столбцов
         return tableData.count + 1
     }
     
@@ -85,12 +84,12 @@ extension TableViewController: UITableViewDataSource {
         cell.textLabel?.numberOfLines = 0
         
         if indexPath.row == 0 {
-            // Если строка - названия столбцов, то показываем их
             cell.textLabel?.text = columnNames.joined(separator: " | ")
+            cell.backgroundColor = .systemGray5
         } else {
-            // Иначе - показываем данные строки
             let rowData = tableData[indexPath.row - 1]
             cell.textLabel?.text = rowData.joined(separator: " | ")
+            cell.backgroundColor = .systemBackground
         }
         
         return cell
@@ -99,11 +98,6 @@ extension TableViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension TableViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Действия при выборе строки таблицы
-    }
-    
-    // Получение списка таблиц из базы данных
     private func fetchTables() {
         guard let connection = makeConnection() else { return }
         
@@ -121,19 +115,22 @@ extension TableViewController: UITableViewDelegate {
             }
             
             pickerView.reloadAllComponents()
+            
+            selectedTableName = tables[0]
+            fetchTableData()
+            
         } catch {
             print("Error fetching tables: \(error)")
         }
     }
     
-    // Создание соединения с базой данных
     private func makeConnection() -> Connection? {
         do {
             var configuration = ConnectionConfiguration()
-            configuration.host = host
-            configuration.database = databaseName
-            configuration.user = username
-            configuration.credential = .scramSHA256(password: password)
+            configuration.host = keys.host
+            configuration.database = keys.databaseName
+            configuration.user = keys.username
+            configuration.credential = .scramSHA256(password: keys.password)
             configuration.ssl = false // Отключаем SSL
             
             let connection = try Connection(configuration: configuration)
@@ -164,7 +161,6 @@ extension TableViewController: UITableViewDelegate {
                 columnNames.append(columnName)
             }
             
-            // Запрос для получения данных из таблицы
             let query = "SELECT * FROM main.\(tableName)"
             let statement = try connection.prepareStatement(text: query)
             defer { statement.close() }

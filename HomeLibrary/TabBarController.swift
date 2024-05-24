@@ -16,6 +16,19 @@ final class TabBarController: UITabBarController {
         self.tabBar.tintColor = .label
         self.tabBar.standardAppearance = appearance
         
+        let tableVC = TableViewController()
+        tableVC.tabBarItem = UITabBarItem(
+            title: "Просмотр",
+            image: UIImage(systemName: "books.vertical"),
+            selectedImage: nil
+        )
+        
+        let requestsVC = RequestsViewController()
+        requestsVC.tabBarItem = UITabBarItem(
+            title: "Выборка",
+            image: UIImage(systemName: "magnifyingglass"),
+            selectedImage: nil)
+        
         let editVC = EditViewController()
         editVC.tabBarItem = UITabBarItem(
             title: "Изменение",
@@ -23,13 +36,6 @@ final class TabBarController: UITabBarController {
             selectedImage: nil
         )
         
-        let tableVC = TableViewController()
-        tableVC.tabBarItem = UITabBarItem(
-            title: "Просмотр",
-            image: UIImage(systemName: "book.closed"),
-            selectedImage: nil
-        )
-        
-        self.viewControllers = [editVC, tableVC]
+        self.viewControllers = [editVC, requestsVC, tableVC]
     }
 }
