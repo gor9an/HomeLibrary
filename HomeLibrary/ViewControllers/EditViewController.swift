@@ -7,11 +7,12 @@
 
 import UIKit
 
-class EditViewController: UITabBarController {
+class EditViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemBackground
+        
         // Do any additional setup after loading the view.
     }
     

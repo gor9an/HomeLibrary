@@ -14,6 +14,7 @@
 		B0D922462C007F100037E9A8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D922452C007F100037E9A8 /* TableViewController.swift */; };
 		B0D922492C0080160037E9A8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D922482C0080160037E9A8 /* EditViewController.swift */; };
 		B0D9224B2C0080330037E9A8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9224A2C0080330037E9A8 /* TabBarController.swift */; };
+		B0D9224E2C0094BF0037E9A8 /* PostgresClientKit in Frameworks */ = {isa = PBXBuildFile; productRef = B0D9224D2C0094BF0037E9A8 /* PostgresClientKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0D9224E2C0094BF0037E9A8 /* PostgresClientKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,10 +60,10 @@
 		B0D922302C007E2C0037E9A8 /* HomeLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				B0D922472C007F230037E9A8 /* ViewControllers */,
-				B0D9224A2C0080330037E9A8 /* TabBarController.swift */,
 				B0D922312C007E2C0037E9A8 /* AppDelegate.swift */,
 				B0D922332C007E2C0037E9A8 /* SceneDelegate.swift */,
+				B0D9224A2C0080330037E9A8 /* TabBarController.swift */,
+				B0D922472C007F230037E9A8 /* ViewControllers */,
 				B0D9223A2C007E2F0037E9A8 /* Assets.xcassets */,
 				B0D9223C2C007E2F0037E9A8 /* LaunchScreen.storyboard */,
 				B0D9223F2C007E2F0037E9A8 /* Info.plist */,
@@ -94,6 +96,9 @@
 			dependencies = (
 			);
 			name = HomeLibrary;
+			packageProductDependencies = (
+				B0D9224D2C0094BF0037E9A8 /* PostgresClientKit */,
+			);
 			productName = HomeLibrary;
 			productReference = B0D9222E2C007E2C0037E9A8 /* HomeLibrary.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +127,9 @@
 				Base,
 			);
 			mainGroup = B0D922252C007E2C0037E9A8;
+			packageReferences = (
+				B0D9224C2C0094BF0037E9A8 /* XCRemoteSwiftPackageReference "PostgresClientKit" */,
+			);
 			productRefGroup = B0D9222F2C007E2C0037E9A8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -222,7 +230,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -279,7 +287,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -303,7 +311,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,7 +341,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -371,6 +379,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B0D9224C2C0094BF0037E9A8 /* XCRemoteSwiftPackageReference "PostgresClientKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/codewinsdotcom/PostgresClientKit.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B0D9224D2C0094BF0037E9A8 /* PostgresClientKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D9224C2C0094BF0037E9A8 /* XCRemoteSwiftPackageReference "PostgresClientKit" */;
+			productName = PostgresClientKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B0D922262C007E2C0037E9A8 /* Project object */;
 }
