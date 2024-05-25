@@ -80,12 +80,14 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
         dropdownMenu.delegate = self
         dropdownMenu.register(UITableViewCell.self, forCellReuseIdentifier: "dropdownCell")
         dropdownMenu.isHidden = true
-        dropdownMenu.layer.cornerRadius = 5
+        dropdownMenu.layer.cornerRadius = 22
+        dropdownMenu.backgroundColor = .systemGray6
+        
         view.addSubview(dropdownMenu)
         
         dropdownMenu.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            dropdownMenu.topAnchor.constraint(equalTo: dropdownButton.bottomAnchor),
+            dropdownMenu.topAnchor.constraint(equalTo: dropdownButton.bottomAnchor, constant: 10),
             dropdownMenu.leadingAnchor.constraint(equalTo: dropdownButton.leadingAnchor),
             dropdownMenu.trailingAnchor.constraint(equalTo: dropdownButton.trailingAnchor),
             dropdownMenu.heightAnchor.constraint(equalToConstant: CGFloat(queries.count * 40))
@@ -110,11 +112,13 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
         if tableView == dropdownMenu {
             let cell = tableView.dequeueReusableCell(withIdentifier: "dropdownCell", for: indexPath)
             cell.textLabel?.text = queries[indexPath.row].0
+            cell.backgroundColor = .systemGray6
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.text = data[indexPath.row].joined(separator: " | ")
+            cell.backgroundColor = .systemBackground
             return cell
         }
     }

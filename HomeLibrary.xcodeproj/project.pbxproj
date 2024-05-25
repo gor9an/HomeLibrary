@@ -12,7 +12,6 @@
 		B0D922342C007E2C0037E9A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D922332C007E2C0037E9A8 /* SceneDelegate.swift */; };
 		B0D9223B2C007E2F0037E9A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0D9223A2C007E2F0037E9A8 /* Assets.xcassets */; };
 		B0D9223E2C007E2F0037E9A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0D9223C2C007E2F0037E9A8 /* LaunchScreen.storyboard */; };
-		B0D922462C007F100037E9A8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D922452C007F100037E9A8 /* TableViewController.swift */; };
 		B0D922492C0080160037E9A8 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D922482C0080160037E9A8 /* EditViewController.swift */; };
 		B0D9224B2C0080330037E9A8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D9224A2C0080330037E9A8 /* TabBarController.swift */; };
 		B0D922512C00BE460037E9A8 /* PostgresClientKit in Frameworks */ = {isa = PBXBuildFile; productRef = B0D922502C00BE460037E9A8 /* PostgresClientKit */; };
@@ -27,7 +26,6 @@
 		B0D9223A2C007E2F0037E9A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0D9223D2C007E2F0037E9A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0D9223F2C007E2F0037E9A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0D922452C007F100037E9A8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		B0D922482C0080160037E9A8 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		B0D9224A2C0080330037E9A8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B0D922572C00F2D50037E9A8 /* PG_Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PG_Keys.swift; sourceTree = "<group>"; };
@@ -79,7 +77,6 @@
 		B0D922472C007F230037E9A8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B0D922452C007F100037E9A8 /* TableViewController.swift */,
 				B0399B5D2C00FC03001FB23C /* RequestsViewController.swift */,
 				B0D922482C0080160037E9A8 /* EditViewController.swift */,
 			);
@@ -176,7 +173,6 @@
 				B0D922322C007E2C0037E9A8 /* AppDelegate.swift in Sources */,
 				B0D922342C007E2C0037E9A8 /* SceneDelegate.swift in Sources */,
 				B0D9224B2C0080330037E9A8 /* TabBarController.swift in Sources */,
-				B0D922462C007F100037E9A8 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
