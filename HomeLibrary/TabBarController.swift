@@ -25,7 +25,7 @@ final class TabBarController: UITabBarController {
         let editVC = EditViewController()
         editVC.tabBarItem = UITabBarItem(
             title: "Изменение",
-            image: UIImage(systemName: "pencil"),
+            image: UIImage(systemName: "book.closed"),
             selectedImage: nil
         )
         

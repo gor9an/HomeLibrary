@@ -132,7 +132,7 @@ final class EditViewController: UIViewController {
     @objc func deleteButtonTapped() {
         if let indexPath = tableView.indexPathForSelectedRow {
             let data = tableData[indexPath.row]
-            deleteData(with: data)
+            showDeleteConfirmationAlert(data: data)
         }
     }
     
@@ -185,9 +185,7 @@ final class EditViewController: UIViewController {
         }
     }
     
-    
     // MARK: - Database Operations
-    
     private func makeConnection() -> Connection? {
         do {
             var configuration = ConnectionConfiguration()
@@ -228,6 +226,21 @@ final class EditViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    private func showDeleteConfirmationAlert(data: [String]) {
+        let alert = UIAlertController(title: "Подтверждение удаления", message: "Вы уверены, что хотите удалить выбранную запись?", preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { [weak self] _ in
+            self?.deleteData(with: data)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     private func handleDatabaseAction(_ action: String, with inputs: [String]) {
         switch action {
         case "Добавить":
@@ -254,20 +267,20 @@ final class EditViewController: UIViewController {
             _ = try statement.execute()
             fetchTableData()
         } catch {
-            print("Error adding data: \(error)")
+            let errorMessage = """
+            Не удалось добавить данные:
+            Ошибка: \(error.localizedDescription)
+            """
+            showAlert(title: "Ошибка", message: errorMessage)
         }
     }
     
     private func deleteData(with inputs: [String]) {
         guard let tableName = selectedTableName, let connection = makeConnection() else { return }
-        
-        var conditions: [String] = []
-        for (index, column) in columnNames.enumerated() {
-            let condition = "\(column) = '\(inputs[index])'"
-            conditions.append(condition)
-        }
-        let conditionString = conditions.joined(separator: " AND ")
-        let query = "DELETE FROM main.\(tableName) WHERE \(conditionString)"
+
+        let condition = "\(columnNames[0]) = '\(inputs[0])'"
+        let query = "DELETE FROM main.\(tableName) WHERE \(condition)"
+        print(query)
         
         do {
             let statement = try connection.prepareStatement(text: query)
@@ -275,7 +288,11 @@ final class EditViewController: UIViewController {
             _ = try statement.execute()
             fetchTableData()
         } catch {
-            print("Error deleting data: \(error)")
+            let errorMessage = """
+            Не удалось удалить данные:
+            Ошибка: \(error.localizedDescription)
+            """
+            showAlert(title: "Ошибка", message: errorMessage)
         }
     }
     
@@ -301,8 +318,19 @@ final class EditViewController: UIViewController {
             _ = try statement.execute()
             fetchTableData()
         } catch {
-            print("Error updating data: \(error)")
+            let errorMessage = """
+            Не удалось обновить данные:
+            Ошибка: \(error.localizedDescription)
+            """
+            showAlert(title: "Ошибка", message: errorMessage)
         }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "ОК", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
