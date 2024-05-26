@@ -56,6 +56,7 @@ final class EditViewController: UIViewController {
         view.addSubview(columnNamesLabel)
         
         dropdownMenu.layer.cornerRadius = 22
+        dropdownMenu.separatorInset = .init(top: 0, left: 5, bottom: 0, right: 5)
         dropdownMenu.backgroundColor = .systemGray6
         dropdownMenu.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
         view.addSubview(dropdownMenu)

@@ -62,7 +62,7 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.separatorInset = .init(top: 0, left: 5, bottom: 0, right: -5)
+        tableView.separatorInset = .init(top: 0, left: 5, bottom: 0, right: 5)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         view.addSubview(tableView)
         
@@ -78,6 +78,7 @@ class RequestsViewController: UIViewController, UITableViewDataSource, UITableVi
     private func setupDropdownMenu() {
         dropdownMenu.dataSource = self
         dropdownMenu.delegate = self
+        dropdownMenu.separatorInset = .init(top: 0, left: 5, bottom: 0, right: 5)
         dropdownMenu.register(UITableViewCell.self, forCellReuseIdentifier: "dropdownCell")
         dropdownMenu.isHidden = true
         dropdownMenu.layer.cornerRadius = 22
